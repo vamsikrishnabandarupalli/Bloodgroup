@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Identification</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            background: linear-gradient(45deg, rgb(46, 179, 212), rgb(43, 176, 151), rgb(82, 57, 11));
+            min-height: 100vh;
+            justify-items: center;
+            align-items: center;
+            padding: 20px 10px;
+        }
+        #image{
+            margin-top: 20px;
+            display: grid;
+            gap: 1rem;
+            align-items: center;
+            justify-items: center;
+        }
+        hr{
+            width: 100%;
+            color: black;
+        }
+        #image h1{
+            margin: 30px;
+            color: white;
+        }
+        #choose-file{
+            display: grid;
+            gap: 1.2rem;
+        }
+        label{
+            padding: 20px;
+        }
+        input{
+            margin-top: 15px;
+        }
+        #blood-cell{
+            text-align: center;
+        }
+        #sub{
+            text-align: center;
+        }
+        button{
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="image">
+        <h1>Welcome to Blood Group Identification Web App!!!</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div id="choose-file">
+                <div id="blood-cell">
+                    <label for="">Blood Cell</label><br>
+                    <input type="file" name="abd" id="cell">
+                </div>
+                <div id="sub">
+                    <button type="submit">Check blood group</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div>
+            {{img}}
+        </div>
+    </div>
+</body>
+</html>
