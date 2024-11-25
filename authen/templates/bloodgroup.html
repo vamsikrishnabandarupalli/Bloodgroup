@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Group Identification</title>
+    {% load static %}
     <style>
         * {
             margin: 0;
@@ -39,7 +40,7 @@
 
         #image h1 {
             display: block;
-            font-size: 1.5rem;
+            font-size: 2rem;
             line-height: 1.7em;
         }
 
@@ -55,39 +56,67 @@
             justify-items: center;
         }
 
+        #blood-cell{
+            margin-top: 30px;
+        }
         form {
             text-align: center;
-            padding: 10px;
         }
-
         label {
             padding: 10px;
             font-size: 1rem;
         }
-
-        input[type="file"] {
-            display: grid;
-            margin-top: 1rem;
+        #file-type {
+            color: black;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: rgba(240, 248, 255, 0.781);
+            max-width: 220px;
+            width: auto;
+            max-height: 220px;
+            height: auto;
+            border-radius: 10px;
+            text-align: center;
         }
 
+        #img-view {
+            max-width: 200px;
+            width: auto;
+            max-height: 200px;
+            height: auto;
+            padding: 10px;
+            display: grid;
+            font-size: 0.9rem;
+            border: 1px black dashed;
+            border-radius: 10px;
+            align-items: center;
+            justify-items: center;
+        }
+        #img-view p{
+            line-height: 1.3rem;
+        }
+        #file-img img{
+            width: 30px;
+            height: 30px;
+        }
         button {
             width: 100%; 
             padding: 10px;
-            font-size: 1rem; 
+            font-size: 0.9rem; 
             border: none;
             border-radius: 10px;
-            background-color: #2bb091;
+            background-color: #168067;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         button:hover {
-            background-color: #249b7a;
+            background-color: #139a7b; 
         }
 
-        #image hr {
+        #uploaded-image hr {
             max-width: 700px;
+            margin-bottom: 20px;
             width: 80%;
             border: 1px solid white;
             text-align: center;
@@ -117,7 +146,7 @@
             justify-content: center;
         }
 
-        img {
+        #process-image img {
             max-width: 300px;
             width: auto;
             padding: 10px;
@@ -128,7 +157,7 @@
         }
 
         @media screen and (max-width: 480px) {
-            img {
+            #process-image img {
                 max-width: 200px;
                 max-height: 200px;
                 width: auto;
@@ -139,19 +168,18 @@
             body {
                 display: grid;
             }
-
-            img {
+            #process-image img {
                 max-width: 150px;
                 max-height: 150px;
                 width: auto;
             }
 
             #image h1 {
-                font-size: 1rem;
+                font-size: 1.5rem;
             }
 
             h3 {
-                font-size: 0.9rem;
+                font-size: 1.3rem;
             }
         }
         @media screen and (max-width: 295px) {
@@ -160,18 +188,17 @@
                 width: 100%;
             }
 
-            img {
+            #process-image img {
                 max-width: 125px;
                 max-height: 125px;
                 width: auto;
             }
-
             #image h1 {
-                font-size: 0.9rem;
+                font-size: 1.2rem;
             }
 
             h3 {
-                font-size: 0.7rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -183,17 +210,27 @@
             {% csrf_token %}
             <div id="choose-file">
                 <div id="blood-cell">
-                    <label for="cell">Upload Blood Cell Image</label><br>
-                    <input type="file" name="abd" id="cell" accept="image/*">
+                    <label for="cell">
+                        Upload Blood Images
+                        <div id="file-type">   
+                            <div id="img-view">
+                                <div id="file-img">
+                                    <img src="{% static "images/dragdrop.png" %}" alt="dragdrop">
+                                </div>
+                                <input type="file" name="abd" id="cell" accept="image/*" hidden>
+                                <p>Drag and Drop <br> or <br>Click here to upload images</p>
+                            </div>
+                        </div>
+                    </label><br>
                 </div>
                 <div id="sub">
                     <button type="submit">Check Blood Group</button>
                 </div>
             </div>
         </form>
-        <hr>
         <div id="uploaded-image">
             {% if img %}
+            <hr>
                 <h3>{{ img_name }}</h3>   
                 <div id="process-image">
                     <div>
