@@ -91,8 +91,8 @@ def bloodgroup(request):
             def cal_agg(region):
                 if region.size == 0 or cv2.countNonZero(region) == 0:
                     return 0
-                _, binary_region = cv2.threshold(region, 0, 255, cv2.THRESH_BINARY)
-                num_labels, _, _, _ = cv2.connectedComponentsWithStats(binary_region, connectivity=8)
+                val, binary_region = cv2.threshold(region, 0, 255, cv2.THRESH_BINARY)
+                num_labels, label, stats, val = cv2.connectedComponentsWithStats(binary_region, connectivity=8)
                 return num_labels - 1
            
             num_region_A = cal_agg(region_A)
