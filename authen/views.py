@@ -51,12 +51,11 @@ def bloodgroup(request):
     if(request.method == "POST"):
         if(request.FILES.get('abd')):
             # Read the uploaded image file
-            # Read the uploaded image file
             img_file = request.FILES['abd']
             img_name = img_file.read()
 
-            img_en = base64.b64encode(img_name).decode('utf-8')
-            img_url = f"data:image/jpeg;base64,{img_en}"
+            encode = base64.b64encode(img_name).decode('utf-8')
+            img_url = f"data:image/jpg;base64,{encode}"
 
             # Decode the image data to a NumPy array
             nparr = np.frombuffer(img_name, np.uint8)
@@ -73,27 +72,66 @@ def bloodgroup(request):
             enhanced_img = cv2.equalizeHist(blurred_img)
 
             # Apply Otsu's thresholding
-            _, threshold_img = cv2.threshold(enhanced_img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            var1, bin_img = cv2.threshold(enhanced_img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
             # Perform morphological operations
             kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-            morph_img = cv2.morphologyEx(threshold_img, cv2.MORPH_OPEN, kernel)
-            morph_img = cv2.morphologyEx(morph_img, cv2.MORPH_CLOSE, kernel)
+            bin_img = cv2.morphologyEx(bin_img, cv2.MORPH_OPEN, kernel)
+            bin_img = cv2.morphologyEx(bin_img, cv2.MORPH_CLOSE, kernel)
+
+            #Finding the Heigth and width of image
+            height, width = bin_img.shape
+            mid_wid = width // 3
+ 
+            region_A = bin_img[:, 0:mid_wid]
+            region_B = bin_img[: mid_wid:2*mid_wid]
+            region_D = bin_img[:, 2*mid_wid: ]
+ 
+            # calculate the default formula for our blood group. that is agglutination
+            def cal_agg(region):
+                num_labels, label, stats, val = cv2.connectedComponentsWithStats(region, connectivity=8)
+                return num_labels - 1
+           
+            num_region_A = cal_agg(region_A)
+            num_region_B = cal_agg(region_B)
+            num_region_D = cal_agg(region_D)
+ 
+            print(num_region_A,num_region_B,num_region_D)
+
+            # Determine if blood type is positive or negative
+            if num_region_D > 0 :
+                blood_factor = "Positive"
+            elif num_region_D <= 0:
+                blood_factor = "Negative"
+            else:
+                blood_factor = "None"
+
+            # Determine the blood group based on num_region_A and num_region_B
+            if num_region_A > 0 and num_region_B == 0:
+                blood_group = "A"
+            elif num_region_A == 0 and num_region_B > 0:
+                blood_group = "B"
+            elif num_region_A > 0 and num_region_B > 0:
+                blood_group = "AB"
+            elif num_region_A == 0 and num_region_B == 0:
+                blood_group = "O"
+            else:
+                blood_group = "Unknown"
+
+            # Combine blood group and factor
+            final_blood_type = blood_group + " " + blood_factor
+            print(final_blood_type)
+
 
             # Encode the processed image back to base64
-            _, buffer = cv2.imencode('.jpg', morph_img)
+            var2, buffer = cv2.imencode('.jpg', bin_img)
             encoded_img = base64.b64encode(buffer).decode('utf-8')
-            img_url = f"data:image/jpeg;base64,{encoded_img}"
-
-
-            # Find contours
-            contours, _ = cv2.findContours(threshold_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            total_length = len(contours)
-
+            morp_img_url = f"data:image/jpeg;base64,{encoded_img}"
 
             # Return the image URL and the contour lengths to the template
-            return render(request, 'bloodgroup.html', {'img_name' : img_file, 'img': img_url, 'total_length' : total_length })
+            return render(request, 'bloodgroup.html', {'img_name' : img_file, 'img': img_url, 'morp_img_url': morp_img_url, 'blood_type':final_blood_type})
         else:
             return render(request, 'bloodgroup.html')
     else:
         return render(request, 'bloodgroup.html')
+ 
