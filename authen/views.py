@@ -123,6 +123,8 @@ def bloodgroup(request):
 
             # Combine blood group and factor
             final_blood_type = blood_group + " " + blood_factor
+            print(final_blood_type)
+
 
             # Encode the processed image back to base64
             var2, buffer = cv2.imencode('.jpg', bin_img)
