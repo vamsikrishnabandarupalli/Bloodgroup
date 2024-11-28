@@ -56,9 +56,6 @@
             justify-items: center;
         }
 
-        #blood-cell{
-            margin-top: 30px;
-        }
         form {
             text-align: center;
         }
@@ -193,6 +190,7 @@
                 max-height: 125px;
                 width: auto;
             }
+
             #image h1 {
                 font-size: 1.2rem;
             }
@@ -211,7 +209,7 @@
             <div id="choose-file">
                 <div id="blood-cell">
                     <label for="cell">
-                        Upload Blood Images
+                        Upload Blood Cell Image
                         <div id="file-type">   
                             <div id="img-view">
                                 <div id="file-img">
@@ -237,17 +235,13 @@
                         <h3>Uploaded Image:</h3>
                         <img src="{{ img }}" alt="Blood Group Image">
                     </div>
-                    <div>
-                        <h3>Morphed Image:</h3>
-                        <img src="{{ morp_img_url }}" alt="Blood Group Image">
-                    </div>
                 </div>
             {% endif %}
         </div>
         <div id="blood-type">
-            {% if blood_type %}
+            {% if total_length %}
                 <hr>
-                <h3>Blood type: {{ blood_type }}</h3>
+                <h3>Contour Length: {{ total_length }}</h3>
             {% endif %}
         </div>
     </div>
