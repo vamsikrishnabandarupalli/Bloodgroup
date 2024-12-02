@@ -83,13 +83,16 @@ def bloodgroup(request):
             height, width = bin_img.shape
             mid_wid = width // 3
  
-            region_A = bin_img[:, 0:mid_wid]
-            region_B = bin_img[: mid_wid:2*mid_wid]
-            region_D = bin_img[:, 2*mid_wid: ]
+            region_A = bin_img[ 0:mid_wid]
+            region_B = bin_img[mid_wid:2*mid_wid]
+            region_D = bin_img[2*mid_wid: ]
  
             # calculate the default formula for our blood group. that is agglutination
             def cal_agg(region):
-                num_labels, label, stats, val = cv2.connectedComponentsWithStats(region, connectivity=8)
+                if region.size == 0 or cv2.countNonZero(region) == 0:
+                        return 0
+                val, binary_region = cv2.threshold(region, 0, 255, cv2.THRESH_BINARY)
+                num_labels, label, stats, val = cv2.connectedComponentsWithStats(binary_region, connectivity=8)
                 return num_labels - 1
            
             num_region_A = cal_agg(region_A)
