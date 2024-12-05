@@ -9,47 +9,53 @@
     <style>
         body {
             width: 100%;
-            background: linear-gradient(45deg, rgb(48, 48, 107), rgb(85, 85, 233), rgb(82, 57, 11));
             min-height: 100vh;
-            display: flex;
+            background-image: url('{% static "images/health.png" %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: grid;
             justify-content: center;
             align-items: center;
-            padding: 20px 10px;
         }
         #one {
             display: grid;
-            gap: 1rem;
+            gap: 3rem;
             align-items: center;
             justify-items: center;
         }
-        #one h1 {
+        #one #h1 {
             text-align: center;
             margin: 20px;
             font-size: 2rem; 
-            color: white;
+            color: black;
         }
-        h2 {
-            font-size: 1.7rem; 
+        h4 {
+            margin-top: 20px;
+            font-size: 1.5rem; 
             color: white;
+            text-align: center;
         }
         h3{
-            color: #fff;
+            color: black;
             text-align: center;
         }
         #login {
             display: flex;
             max-width: 500px;
             width: 100%;
-            background-color: rgb(76, 204, 202);
+            background-color: rgb(241, 246, 246);
+            border: none;
+            border-radius: 10px;
         }
         #login #pic1{
             display: grid;
-            top: 40%;
             width: 50%;
-            background-image: url('{% static "images/bloodcell1.jpg" %}');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background-color: #2fa1de;
+            border-top-right-radius: 4rem;
+            border-bottom-right-radius: 4rem;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
             align-items: center;
             justify-content: center;
         }
@@ -84,29 +90,55 @@
         button:hover {
             background-color: #0056b3; 
         }
-        #register {
-            color: #fff;
+        #register p{
             text-align: center;
-            font-size: 1.2rem; 
+            font-size: 0.9rem; 
+            color: white;
+            padding: 10px;
+        }
+        #register button {
+            width: 80%; 
+            padding: 10px;
+            font-size: 1rem; 
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #register button:hover {
+            background-color: #0056b3; 
         }
         #registerform{
             display: none;
         }
-        #register a {
-            font-weight: bold;
-            font-size: 1.2rem;
+        #registerform button{
+            width: 85%; 
+            padding: 10px;
+            font-size: 1rem; 
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #registerform a {
+            font-size: 1rem;
             text-decoration: none;
-            color: #15a180;
+            color: white;
         }
-        #register a:hover {
-            text-decoration: underline;
+        #register a {
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
         }
-        
         @media (max-width: 769px) {
-            #one h1 {
+            #one #h1 {
                 font-size: 1.8rem;
             }
-            h2 {
+            h4 {
                 font-size: 1.3rem;
             }
         }
@@ -114,10 +146,10 @@
             body {
                 padding: 10px;
             }
-            #one h1 {
+            #one #h1 {
                 font-size: 1.5rem;
             }
-            h2 {
+            h4 {
                 font-size: 1.2rem;
             }
             button {
@@ -128,11 +160,9 @@
             }
         }
         @media (max-width: 426px) {
-            #two{
-                background-color: #fff;
-            }
             #login{
                 display: grid;
+                padding: 20px;
             }
             #login #pic1{
                 display: none;
@@ -147,7 +177,7 @@
                 width: 100%;
             }
             #register {
-               display: none;
+                display: none;
             }
             #registerform{
                 display: block;
@@ -158,10 +188,10 @@
             }   
         }
         @media (max-width: 260px) {
-            #one h1 {
+            #one #h1 {
                 font-size: 1.2rem;
             }
-            h2 {
+            h4 {
                 font-size: 1rem;
             }
             button {
@@ -171,19 +201,21 @@
             input {
                 font-size: 0.8rem;
             }
-        }
-    </style>
-    
+        }</style>
+
 </head>
 <body  >
     <div class="container" id="one">
-        <h1 class="text-center"> Welcome to Blood Group Identification Page!!! </h1>
+        <div d="h1">
+            <h1 class="text-center">Welcome to Blood Group Identification Page!!!</h1>
+        </div>
         <div id="two">
             <div id="login">
                 <div id="pic1" >
-                    <h1>Welcome to Login Page</h1>
                     <div id="register">
-                        <p>New user? <a href="./registration">Register Here</a></p>
+                        <h4>Hello, User</h4>
+                        <p>Enter your details to register for using a site features  <p>
+                        <button type="submit"><a href="./registration">Register Here</a></button>
                     </div>
                 </div>
                 <form method="post">
@@ -194,7 +226,8 @@
                     <button type="submit">Login</button>
                 </form>
                 <div id="registerform">
-                    <p>New user? <a href="./registration">Register Here</a></p>
+                    <p>New user?  </p>
+                    <button><a href="./registration">Register Here</a></button>
                 </div>
             </div>
         </div>

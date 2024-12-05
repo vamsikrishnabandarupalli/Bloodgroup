@@ -6,6 +6,7 @@
     <title>Blood Group Identification</title>
     {% load static %}
     <style>
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +15,7 @@
 
         body {
             width: 100%;
-            background: linear-gradient(45deg, rgb(46, 179, 212), rgb(43, 176, 151), rgb(82, 57, 11));
+            background: linear-gradient(45deg, rgb(46, 179, 212), rgb(113, 201, 239), rgb(26, 108, 152));
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -56,9 +57,6 @@
             justify-items: center;
         }
 
-        #blood-cell{
-            margin-top: 30px;
-        }
         form {
             text-align: center;
         }
@@ -105,13 +103,13 @@
             font-size: 0.9rem; 
             border: none;
             border-radius: 10px;
-            background-color: #168067;
+            background-color: #5ec5e1;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #139a7b; 
+            background-color: #0e5682; 
         }
 
         #uploaded-image hr {
@@ -193,6 +191,7 @@
                 max-height: 125px;
                 width: auto;
             }
+
             #image h1 {
                 font-size: 1.2rem;
             }
@@ -201,6 +200,7 @@
                 font-size: 1rem;
             }
         }
+
     </style>
 </head>
 <body>
@@ -211,7 +211,7 @@
             <div id="choose-file">
                 <div id="blood-cell">
                     <label for="cell">
-                        Upload Blood Images
+                        Upload Blood Cell Image
                         <div id="file-type">   
                             <div id="img-view">
                                 <div id="file-img">

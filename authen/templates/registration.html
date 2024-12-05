@@ -9,53 +9,57 @@
     <style>
         body {
             width: 100%;
-            background: linear-gradient(45deg, rgb(48, 48, 107), rgb(85, 85, 233), rgb(82, 57, 11));
             min-height: 100vh;
-            display: flex;
+            background-image: url('{% static "images/health.png" %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: grid;
             justify-content: center;
             align-items: center;
-            padding: 20px 10px;
         }
         #one {
             display: grid;
-            gap: 1rem;
+            gap: 3rem;
             align-items: center;
             justify-items: center;
         }
-        #one h1 {
+        #one #h1 {
             text-align: center;
             margin: 20px;
             font-size: 2rem; 
-            color: white;
+            color: black;
         }
-        h2 {
-            font-size: 1.7rem; 
+        h4 {
+            margin-top: 20px;
+            font-size: 1.5rem; 
             color: white;
-            
+            text-align: center;
         }
         h3{
-            color: #fff;
+            color: black;
             text-align: center;
         }
         #signup {
             display: flex;
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
-            background-color: rgb(76, 204, 202);
+            background-color: rgb(241, 246, 246);
+            border-radius: 10px;
         }
-        #signup #pic{
+        #signup #right{
             display: grid;
-            top: 40%;
             width: 50%;
-            background-image: url('{% static "images/bloodcell1.jpg" %}');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background-color: #2fa1de;
+            border-top-left-radius: 4rem;
+            border-bottom-left-radius: 4rem;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
             align-items: center;
             justify-content: center;
         }
         form {
-            padding: 20px;
+            padding: 10px 20px;
             width: 50%;
         }
         input {
@@ -68,7 +72,8 @@
         }
         label {
             margin-bottom: 10px;
-            font-size: 1rem; 
+            font-size: 0.9rem; 
+            display: block;
         }
         button {
             width: 100%; 
@@ -84,29 +89,55 @@
         button:hover {
             background-color: #0056b3; 
         }
-        #login {
-            color: #fff;
+        #login p{
             text-align: center;
-            font-size: 1.2rem; 
+            font-size: 0.9rem; 
+            color: white;
+            padding: 10px;
+        }
+        #login button {
+            width: 80%; 
+            padding: 10px;
+            font-size: 1rem; 
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #login button:hover {
+            background-color: #0056b3; 
         }
         #loginform{
             display: none;
         }
-        #login a {
-            font-weight: bold;
-            font-size: 1.2rem;
+        #loginform button{
+            width: 85%; 
+            padding: 10px;
+            font-size: 1rem; 
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #loginform a {
+            font-size: 1rem;
             text-decoration: none;
-            color: #0bd5eb;
+            color: white;
         }
-        #login a:hover {
-            text-decoration: underline;
+        #login a {
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
         }
-        
         @media (max-width: 769px) {
-            #one h1 {
+            #one #h1 {
                 font-size: 1.8rem;
             }
-            h2 {
+            h4 {
                 font-size: 1.3rem;
             }
         }
@@ -114,10 +145,10 @@
             body {
                 padding: 10px;
             }
-            #one h1 {
+            #one #h1 {
                 font-size: 1.5rem;
             }
-            h2 {
+            h4 {
                 font-size: 1.2rem;
             }
             button {
@@ -128,17 +159,12 @@
             }
         }
         @media (max-width: 426px) {
-            #signup {
+            #signup{
                 display: grid;
-                width: 100%;
-                background-color: rgb(76, 204, 202);
+                padding: 20px;
             }
-            #signup #pic{
+            #signup #right{
                 display: none;
-            }
-            
-            #login {
-               display: none;
             }
             form{
                 width: 100%;
@@ -149,8 +175,11 @@
             button{
                 width: 100%;
             }
+            #login {
+                display: none;
+            }
             #loginform{
-                display: grid;
+                display: block;
                 text-align: center;
             }
             #login a:hover {
@@ -158,10 +187,10 @@
             }   
         }
         @media (max-width: 260px) {
-            #one h1 {
+            #one #h1 {
                 font-size: 1.2rem;
             }
-            h2 {
+            h4 {
                 font-size: 1rem;
             }
             button {
@@ -169,22 +198,17 @@
                 padding: 8px;
             }
             input {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
-        }
-    </style>
+        }</style>
 </head>
 <body>
     <div id="one">
-        <h1>Welcome to Blood Group Identification Page!!!</h1>
+        <div d="h1">
+            <h1 class="text-center">Welcome to Blood Group Identification Page!!!</h1>
+        </div>
         <div id="two" >
             <div id="signup" >
-                <div id="pic" >
-                    <h1>Welcome to Registration Page</h1>
-                    <div id="login">
-                        <p>Already account created? <a href="./login">Login Here</a></p>
-                    </div>
-                </div>
                 <form method="post">
                     <h3>Register</h3>
                     {% csrf_token %}
@@ -197,8 +221,16 @@
                     {% endfor %}
                     <button type="submit">Register</button>
                 </form>
+                <div id="right">
+                    <div id="login" >
+                        <h4>Hello, User</h4>
+                        <p>Enter your login details to use site features<p>
+                        <button><a href="./login">Login Here</a></button>
+                    </div>
+                </div>
                 <div id="loginform">
-                    <p>Already account created? <a href="./login">Login Here</a></p>
+                    <p>Already account created? </p>
+                    <button type="submit"><a href="./login">Login Here</a></button>
                 </div>
             </div>
         </div>

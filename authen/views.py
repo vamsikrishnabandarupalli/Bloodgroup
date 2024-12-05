@@ -81,11 +81,11 @@ def bloodgroup(request):
 
             #Finding the Heigth and width of image
             height, width = bin_img.shape
-            mid_wid = width // 3
+            region_width = width // 3
  
-            region_A = bin_img[ 0:mid_wid]
-            region_B = bin_img[mid_wid:2*mid_wid]
-            region_D = bin_img[2*mid_wid: ]
+            region_A = bin_img[0:region_width]   # A antigen test region
+            region_B = bin_img[region_width:2*region_width]  # B antigen test region
+            region_D = bin_img[2*region_width:] 
  
             # calculate the default formula for our blood group. that is agglutination
             def cal_agg(region):
@@ -110,13 +110,13 @@ def bloodgroup(request):
                 blood_factor = "None"
 
             # Determine the blood group based on num_region_A and num_region_B
-            if num_region_A > 0 and num_region_B == 0:
+            if num_region_A > 5 and num_region_B <= 5:
                 blood_group = "A"
-            elif num_region_A == 0 and num_region_B > 0:
+            elif num_region_A <= 5 and num_region_B > 5:
                 blood_group = "B"
-            elif num_region_A > 0 and num_region_B > 0:
+            elif num_region_A > 5 and num_region_B > 5:
                 blood_group = "AB"
-            elif num_region_A == 0 and num_region_B == 0:
+            elif num_region_A <= 5 and num_region_B <= 5:
                 blood_group = "O"
             else:
                 blood_group = "Unknown"
