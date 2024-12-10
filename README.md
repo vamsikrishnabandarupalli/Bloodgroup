@@ -36,9 +36,11 @@ uploading images and viewing results. By streamlining blood group identification
 ![Screenshot 2024-12-05 115357](https://github.com/user-attachments/assets/4de604d5-f216-46ba-bed8-75e05ab21af0)
 
 **PROFILE PAGE:**
+
 ![Screenshot 2024-12-10 161411](https://github.com/user-attachments/assets/cba22ef7-0307-4c2b-86bf-bee34092b29d)
 
 **OUTPUTS:**
+
 ![Screenshot 2024-12-05 115245](https://github.com/user-attachments/assets/ba3e3189-c591-4b88-bdbf-368bf1dbd883)
 
 ![Screenshot 2024-12-05 115303](https://github.com/user-attachments/assets/59f637d0-31bd-4f7d-bfb0-ee60ee213e23)
