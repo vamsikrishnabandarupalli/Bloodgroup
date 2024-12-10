@@ -32,7 +32,7 @@ The project aims to automate the identification of blood groups by combining Dja
 
 **LOGIN PAGE:**
 
-![Screenshot 2024-12-05 115357](https://github.com/user-attachments/assets/4de604d5-f216-46ba-bed8-75e05ab21af0)
+![Screenshot 2024-12-05 093522](https://github.com/user-attachments/assets/1efd98fc-5430-44e8-98d4-3fb375a0e68d)
 
 **PROFILE PAGE:**
 
