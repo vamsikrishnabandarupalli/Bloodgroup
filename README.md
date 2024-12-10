@@ -3,8 +3,7 @@
 
 **INTRODUCTION**
 
-The project aims to automate the identification of blood groups by combining Django, a robust web framework, with OpenCV, a powerful computer vision library, to analyze blood sample images efficiently and accurately. OpenCV is employed to process and interpret images of blood tests, identifying the ABO and Rh blood groups, while Django provides a user-friendly web interface for         
-uploading images and viewing results. By streamlining blood group identification, the system minimizes human error, speeds up the process, and offers a scalable solution for medical diagnostics and blood donation systems.
+The project aims to automate the identification of blood groups by combining Django, a robust web framework, with OpenCV, a powerful computer vision library, to analyze blood sample images efficiently and accurately. OpenCV is employed to process and interpret images of blood tests, identifying the ABO and Rh blood groups, while Django provides a user-friendly web interface for uploading images and viewing results. By streamlining blood group identification, the system minimizes human error, speeds up the process, and offers a scalable solution for medical diagnostics and blood donation systems.
 
   
 **CUSTOMER FEATURES**
